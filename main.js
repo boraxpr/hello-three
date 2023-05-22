@@ -51,20 +51,25 @@ function detectMouseMovements() {
     isDragging = false;
   });
 }
-function detectTouchMovements() {
-  window.addEventListener('touchstart', function (event) {
-    isDragging = true;
+
+function detectMobileMovements() {
+  let lastTouchPosition = null;
+
+  document.addEventListener('touchstart', function (event) {
+    lastTouchPosition = event.touches[0].clientX;
   });
 
-  window.addEventListener('touchmove', function (event) {
-    if (isDragging) {
-      cube.rotation.x += event.movementY * 0.000005;
-      cube.rotation.y += event.movementX * 0.000005;
+  document.addEventListener('touchmove', function (event) {
+    if (lastTouchPosition !== null) {
+      const currentTouchPosition = event.touches[0].clientX;
+      const delta = currentTouchPosition - lastTouchPosition;
+      // do something with delta
+      lastTouchPosition = currentTouchPosition;
     }
   });
 
-  window.addEventListener('touchend', function (event) {
-    isDragging = false;
+  document.addEventListener('touchend', function (event) {
+    lastTouchPosition = null;
   });
 }
 
@@ -76,9 +81,8 @@ function animate() {
   cube.rotation.x += 0.0001;
   cube.rotation.y += 0.0001;
 
-
-
   detectMouseMovements();
+  detectMobileMovements();
 
   renderer.render(scene, camera);
 }
