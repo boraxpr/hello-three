@@ -51,6 +51,23 @@ function detectMouseMovements() {
     isDragging = false;
   });
 }
+function detectTouchMovements() {
+  window.addEventListener('touchstart', function (event) {
+    isDragging = true;
+  });
+
+  window.addEventListener('touchmove', function (event) {
+    if (isDragging) {
+      cube.rotation.x += event.movementY * 0.000005;
+      cube.rotation.y += event.movementX * 0.000005;
+    }
+  });
+
+  window.addEventListener('touchend', function (event) {
+    isDragging = false;
+  });
+}
+
 
 function animate() {
   requestAnimationFrame(animate);
