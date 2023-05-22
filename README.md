@@ -22,3 +22,9 @@ You need to have [Node.js](https://nodejs.org/en/) installed on your computer.
 ### Run the project
 
 ```npx vite```
+
+## The first draft
+
+- A sphere that rotates slowly by itself.
+- The sphere can be rotated by dragging the mouse (Invert X,Y).
+- Zoom in and out with the mouse wheel.
