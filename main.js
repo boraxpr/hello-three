@@ -42,8 +42,8 @@ function detectMouseMovements() {
 
   window.addEventListener('mousemove', function (event) {
     if (isDragging) {
-      cube.rotation.x += event.movementY * 0.000025;
-      cube.rotation.y += event.movementX * 0.000025;
+      cube.rotation.x += event.movementY * 0.000005;
+      cube.rotation.y += event.movementX * 0.000005;
     }
   });
 
