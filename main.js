@@ -15,6 +15,25 @@ scene.add(cube);
 camera.position.z = 1;
 
 function detectMouseMovements() {
+  window.addEventListener('wheel', function (event) {
+    console.log(cube.position.z);
+    // Allows the maximum zoom to be 1.27
+    // When it reaches 1.27, it will stop zooming in and allow zooming out
+    if (cube.position.z < 1.27) {
+      cube.position.z += event.deltaY * 0.0000007;
+    }
+    if (cube.position.z > 1.27) {
+      cube.position.z = 1.26;
+    }
+    // Allows the minimum zoom to be 0.5
+    // When it reaches 0.5, it will stop zooming out and allow zooming in
+    if (cube.position.z > 0.025) {
+      cube.position.z += event.deltaY * 0.0000007;
+    }
+    if (cube.position.z < 0.025) {
+      cube.position.z = 0.02505;
+    }
+  });
   let isDragging = false;
 
   window.addEventListener('mousedown', function (event) {
@@ -23,8 +42,8 @@ function detectMouseMovements() {
 
   window.addEventListener('mousemove', function (event) {
     if (isDragging) {
-      cube.rotation.x += event.movementY * 0.00005;
-      cube.rotation.y += event.movementX * 0.00005;
+      cube.rotation.x += event.movementY * 0.000025;
+      cube.rotation.y += event.movementX * 0.000025;
     }
   });
 
@@ -36,13 +55,11 @@ function detectMouseMovements() {
 function animate() {
   requestAnimationFrame(animate);
 
-  cube.rotation.x += 0.001;
-  cube.rotation.y += 0.001;
+  //if no mouse movement for 1 sec, cube will rotate on its own
+  cube.rotation.x += 0.0001;
+  cube.rotation.y += 0.0001;
 
-  window.addEventListener('wheel', function (event) {
-    console.log(event.deltaY);
-    cube.position.z += event.deltaY * 0.000003;
-  });
+
 
   detectMouseMovements();
 
