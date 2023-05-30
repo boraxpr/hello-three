@@ -21,8 +21,8 @@ const orbit = new OrbitControls(camera, renderer.domElement);
 
 camera.position.set(0.13, 0.27, 0.32);
 orbit.update();
-const axesHelper = new THREE.AxesHelper(5);
-scene.add(axesHelper);
+// const axesHelper = new THREE.AxesHelper(5);
+// scene.add(axesHelper);
 
 
 const loader = new GLTFLoader();
