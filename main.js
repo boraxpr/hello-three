@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
 // Allocate space for the scene
 const renderer = new THREE.WebGLRenderer();
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -10,6 +11,7 @@ document.body.appendChild(renderer.domElement);
 // Create the scene and the camera
 const scene = new THREE.Scene();
 
+// Set a camera
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -17,6 +19,7 @@ const camera = new THREE.PerspectiveCamera(
   1000,
 );
 
+// Add an OrbitControls object to the scene to allow for camera control
 const orbit = new OrbitControls(camera, renderer.domElement);
 
 camera.position.set(0.13, 0.27, 0.32);
@@ -24,12 +27,13 @@ orbit.update();
 // const axesHelper = new THREE.AxesHelper(5);
 // scene.add(axesHelper);
 
-
-const loader = new GLTFLoader();
-const loadedData = await loader.loadAsync('assets/model/donut.glb');
-const cube = loadedData.scene;
-
+// Vite supports top-level await
+const gltf = await new GLTFLoader().loadAsync('assets/model/donut.glb');
+const cube = gltf.scene;
 scene.add(cube);
+
+
+
 const dirLight = new THREE.DirectionalLight(0xefefff, 1.5);
 dirLight.position.set(10, 10, 10);
 scene.add(dirLight);
