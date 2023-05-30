@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
+import donut from './assets/model/donut.glb';
 // Allocate space for the scene
 const renderer = new THREE.WebGLRenderer();
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -28,9 +28,7 @@ orbit.update();
 // scene.add(axesHelper);
 
 // Vite supports top-level await
-const gltf = Promise.all([
-  () => new GLTFLoader().loadAsync('assets/model/donut.glb'),
-]);
+const gltf = await new GLTFLoader().loadAsync(donut);
 const cube = gltf.scene;
 scene.add(cube);
 
