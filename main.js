@@ -28,7 +28,9 @@ orbit.update();
 // scene.add(axesHelper);
 
 // Vite supports top-level await
-const gltf = await new GLTFLoader().loadAsync('assets/model/donut.glb');
+const gltf = Promise.all([
+  () => new GLTFLoader().loadAsync('assets/model/donut.glb'),
+]);
 const cube = gltf.scene;
 scene.add(cube);
 
@@ -81,7 +83,7 @@ scene.add(dirLight);
 
 function animate() {
   requestAnimationFrame(animate);
-  console.log(camera.position);
+  // console.log(camera.position);
   //if no mouse movement for 1 sec, cube will rotate on its own
   // cube.rotation.x += 0.001;
   cube.rotation.y += 0.001;
