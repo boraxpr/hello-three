@@ -38,46 +38,9 @@ const dirLight = new THREE.DirectionalLight(0xefefff, 1.5);
 dirLight.position.set(10, 10, 10);
 scene.add(dirLight);
 
-// function detectMouseMovements() {
-//   window.addEventListener('wheel', function (event) {
-//     console.log(cube.position.z);
-//     // Allows the maximum zoom to be 1.27
-//     // When it reaches 1.27, it will stop zooming in and allow zooming out
-//     if (cube.position.z < 1.27) {
-//       cube.position.z += event.deltaY * 0.0000007;
-//     }
-//     if (cube.position.z > 1.27) {
-//       cube.position.z = 1.26;
-//     }
-//     // Allows the minimum zoom to be 0.5
-//     // When it reaches 0.5, it will stop zooming out and allow zooming in
-//     if (cube.position.z > 0.025) {
-//       cube.position.z += event.deltaY * 0.0000007;
-//     }
-//     if (cube.position.z < 0.025) {
-//       cube.position.z = 0.02505;
-//     }
-//   });
-//   let isDragging = false;
-
-//   window.addEventListener('mousedown', function (event) {
-//     isDragging = true;
-//   });
-
-//   window.addEventListener('mousemove', function (event) {
-//     if (isDragging) {
-//       cube.rotation.x += event.movementY * 0.000005;
-//       cube.rotation.y += event.movementX * 0.000005;
-//     }
-//   });
-
-//   window.addEventListener('mouseup', function (event) {
-//     isDragging = false;
-//   });
-// }
-
-
-
+// Add an arrow helper to visualize the directional light
+// const dirLightHelper = new THREE.DirectionalLightHelper(dirLight, 5);
+// scene.add(dirLightHelper);
 
 function animate() {
   requestAnimationFrame(animate);
@@ -85,8 +48,6 @@ function animate() {
   //if no mouse movement for 1 sec, cube will rotate on its own
   // cube.rotation.x += 0.001;
   cube.rotation.y += 0.001;
-
-  // detectMouseMovements();
 
   renderer.render(scene, camera);
 }
